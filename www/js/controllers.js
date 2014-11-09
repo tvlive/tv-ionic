@@ -68,23 +68,77 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TVContentCtrl', function($scope, $stateParams, $http) {
+  function transform(data) {
+    for (i = 0; i < data.length; i++) {
+      if (data[i].series){
+        data[i].title = data[i].series.serieTitle;
+      }
+
+      if (data[i].program){
+        data[i].title = data[i].program.title;
+      } 
+
+      if (data[i].film){
+        data[i].title = data[i].film.title;
+      }
+       
+    }
+      return data;
+  }
+
   $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/' + $stateParams.time).
         success(function(data) {
-            $scope.tvContents = data;
+            $scope.tvContents = transform(data);
         });  
 })
 
 .controller('CurrentCtrl', function($scope, $stateParams, $http) {
+  function transform(data) {
+      if (data.series){
+        data.title = data.series.serieTitle;
+        data.description = data.series.description;
+      }
+
+      if (data.program){
+        data.title = data.program.title;
+        data.description = data.program.description;
+      } 
+
+      if (data.film){
+        data.title = data.film.title;
+        data.description = data.film.description;
+      }
+      return data;
+  }
+
   $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/current').
         success(function(data) {
-            $scope.details = data;
+            $scope.details = transform(data);
         });  
   })
 
 .controller('DetailsCtrl', function($scope, $stateParams, $http) {
+  function transform(data) {
+      if (data.series){
+        data.title = data.series.serieTitle;
+        data.description = data.series.description;
+      }
+
+      if (data.program){
+        data.title = data.program.title;
+        data.description = data.program.description;
+      } 
+
+      if (data.film){
+        data.title = data.film.title;
+        data.description = data.film.description;
+      }
+      return data;
+  }
+
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
         success(function(data) {
-            $scope.details = data;
+            $scope.details = transform(data);
         });  
   })
 .controller('PlaylistCtrl', function($scope, $stateParams) {
