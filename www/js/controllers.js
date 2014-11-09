@@ -44,5 +44,41 @@ angular.module('starter.controllers', [])
   ];
 })
 
+.controller('ProvidersCtrl', function($scope) {
+  $scope.providers = [
+    { name: 'Freeview', id: 1 },
+    { name: 'Sky & Cable', id: 2 },
+    { name: 'Terrestrial', id: 3 }    
+  ];
+})
+
+.controller('ChannelsCtrl', function($scope, $stateParams, $http) {
+     $http.get('http://beta.tvlive.io/channels/provider/' + $stateParams.provider).
+        success(function(data) {
+            $scope.channels = data;
+        });
+})
+
+.controller('ChooseTVContentTimeCtrl', function($scope, $stateParams) {
+  $scope.tvContentsTime = [
+    { name: 'Today', time: 'today', channel: $stateParams.channel},
+    { name: 'Now', time: 'current', channel: $stateParams.channel},
+    { name: 'Left', time: 'left', channel: $stateParams.channel}
+  ];
+})
+
+.controller('TVContentCtrl', function($scope, $stateParams, $http) {
+  $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/' + $stateParams.time).
+        success(function(data) {
+            $scope.tvContents = data;
+        });  
+})
+
+.controller('DetailsCtrl', function($scope, $stateParams, $http) {
+  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
+        success(function(data) {
+            $scope.details = data;
+        });  
+  })
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });

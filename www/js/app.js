@@ -57,6 +57,56 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+    .state('app.providers', {
+      url: "/providers",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/providers.html",
+          controller: 'ProvidersCtrl'
+        }
+      }
+    })
+
+    .state('app.channeks', {
+      url: "/channels/:provider",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/channels.html",
+          controller: 'ChannelsCtrl'
+        }
+      }
+    })
+
+    .state('app.chooseTVContentTime', {
+      url: "/choose-tvcontent-time/:channel",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/choose-tvcontent-time.html",
+          controller: 'ChooseTVContentTimeCtrl'
+        }
+      }
+    })
+
+    .state('app.tvcontents', {
+      url: "/tvcontents/:time/:channel",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/tvcontents.html",
+          controller: 'TVContentCtrl'
+        }
+      }
+    })
+
+    .state('app.details', {
+      url: "/details/:tvContentId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/details.html",
+          controller: 'DetailsCtrl'
+        }
+      }
+    })
+
     .state('app.single', {
       url: "/playlists/:playlistId",
       views: {
