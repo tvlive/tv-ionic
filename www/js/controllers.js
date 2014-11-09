@@ -74,6 +74,13 @@ angular.module('starter.controllers', [])
         });  
 })
 
+.controller('CurrentCtrl', function($scope, $stateParams, $http) {
+  $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/current').
+        success(function(data) {
+            $scope.details = data;
+        });  
+  })
+
 .controller('DetailsCtrl', function($scope, $stateParams, $http) {
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
         success(function(data) {

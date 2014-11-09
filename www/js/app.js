@@ -87,6 +87,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+  .state('app.current', {
+      url: "/tvcontents/current/:channel",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/current.html",
+          controller: 'CurrentCtrl'
+        }
+      }
+    })
+  
     .state('app.tvcontents', {
       url: "/tvcontents/:time/:channel",
       views: {
