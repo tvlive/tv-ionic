@@ -1,0 +1,19 @@
+<ion-view title="TV Providers">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+      <ion-item href="#/app/options-by-providers/{{provider.name}}">
+        {{series.name}}
+      </ion-item>
+    <ion-item href="#/app/options-by-providers/{{provider.name}}">
+        {{films.name}}
+      </ion-item>
+      <ion-item href="#/app/options-by-providers/{{provider.name}}">
+        {{programs.name}}
+      </ion-item>
+      <ion-item href="#/app/channels/{{channels.provider}}">
+        {{channels.name}}
+      </ion-item>
+  </ion-content>
+</ion-view>

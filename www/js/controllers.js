@@ -33,23 +33,19 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
 .controller('ProvidersCtrl', function($scope) {
   $scope.providers = [
     { name: 'Freeview', id: 1 },
     { name: 'Sky & Cable', id: 2 },
     { name: 'Terrestrial', id: 3 }    
   ];
+})
+
+.controller('OptionsByProviderCtrl', function($scope, $stateParams) {
+  $scope.series = { name: 'Series Today', provider: $stateParams.provider};
+  $scope.films = { name: 'Films Today', provider: $stateParams.provider};
+  $scope.programs = { name: 'Programs Today', provider: $stateParams.provider};
+  $scope.channels = { name: 'Channels', provider: $stateParams.provider};
 })
 
 .controller('ChannelsCtrl', function($scope, $stateParams, $http) {
