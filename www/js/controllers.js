@@ -42,10 +42,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('OptionsByProviderCtrl', function($scope, $stateParams) {
-  $scope.series = { name: 'Series Today', provider: $stateParams.provider};
-  $scope.films = { name: 'Films Today', provider: $stateParams.provider};
-  $scope.programs = { name: 'Programs Today', provider: $stateParams.provider};
-  $scope.channels = { name: 'Channels', provider: $stateParams.provider};
+  $scope.provider = $stateParams.provider;  
 })
 
 .controller('ChannelsCtrl', function($scope, $stateParams, $http) {
@@ -137,5 +134,32 @@ angular.module('starter.controllers', [])
             $scope.details = transform(data);
         });  
   })
+
+.controller('ContentByTypeToday', function($scope, $stateParams, $http) {
+    function transform(data) {
+    for (i = 0; i < data.length; i++) {
+      if (data[i].series){
+        data[i].title = data[i].series.serieTitle;
+      }
+
+      if (data[i].program){
+        data[i].title = data[i].program.title;
+      } 
+
+      if (data[i].film){
+        data[i].title = data[i].film.title;
+      }
+       
+    }
+      return data;
+  }
+  
+  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/today').
+        success(function(data) {
+            $scope.tvContents = transform(data);
+        });  
+  })
+
+
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });

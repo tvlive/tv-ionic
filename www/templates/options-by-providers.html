@@ -3,17 +3,17 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-      <ion-item href="#/app/options-by-providers/{{provider.name}}">
-        {{series.name}}
+      <ion-item href="#/app/content-today/series/{{provider}}">
+        Series today
       </ion-item>
-    <ion-item href="#/app/options-by-providers/{{provider.name}}">
-        {{films.name}}
+    <ion-item href="#/app/content-today/film/{{provider}}">
+        Films today
       </ion-item>
-      <ion-item href="#/app/options-by-providers/{{provider.name}}">
-        {{programs.name}}
+      <ion-item href="#/app/content-today/program/{{provider}}">
+        Programs today
       </ion-item>
-      <ion-item href="#/app/channels/{{channels.provider}}">
-        {{channels.name}}
+      <ion-item href="#/app/channels/{{provider}}">
+        Channels
       </ion-item>
   </ion-content>
 </ion-view>

@@ -51,7 +51,18 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.channeks', {
+  .state('app.contentByTypeToday', {
+      url: "/content-today/:type/:provider",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/tvcontents.html",
+          controller: 'ContentByTypeToday'
+        }
+      }
+    })
+    
+
+    .state('app.channels', {
       url: "/channels/:provider",
       views: {
         'menuContent' :{
