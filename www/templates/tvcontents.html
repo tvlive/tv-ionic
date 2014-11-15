@@ -3,10 +3,12 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <ion-list>
-      <ion-item ng-repeat="tvContent in tvContents" href="#/app/details/{{tvContent.id}}">
-        {{tvContent.title}} {{tvContent.start}}-{{tvContent.end}}
-      </ion-item>
-    </ion-list>
+    <div class="list">
+      <a ng-repeat="tvContent in tvContents" class="item item-icon-left" href="#/app/details/{{tvContent.id}}">
+        <i class="icon ion-email"></i>
+        <h2>{{tvContent.title}}</h2> 
+        <p>{{tvContent.start}}-{{tvContent.end}}</p>
+      </a>
+  </div>
   </ion-content>
 </ion-view>

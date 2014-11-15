@@ -73,8 +73,7 @@ angular.module('starter.controllers', [])
 
       if (data[i].film){
         data[i].title = data[i].film.title;
-      }
-       
+      }       
     }
       return data;
   }

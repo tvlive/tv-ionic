@@ -3,10 +3,11 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <ion-list>
-      <ion-item ng-repeat="provider in providers" href="#/app/options-by-providers/{{provider.name}}">
+    <div class="list">
+      <a ng-repeat="provider in providers"  class="item item-icon-left" href="#/app/options-by-providers/{{provider.name}}">
+        <i class="icon ion-monitor"></i>
         {{provider.name}}
-      </ion-item>
-    </ion-list>
+      </a>
+    </div>
   </ion-content>
 </ion-view>

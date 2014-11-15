@@ -3,10 +3,11 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <ion-list>
-      <ion-item ng-repeat="channel in channels" href="#/app/choose-tvcontent-time/{{channel.name}}">
-        {{channel.name}}
-      </ion-item>
-    </ion-list>
+    <div class="list">
+      <a ng-repeat="channel in channels" class="item item-avatar" href="#/app/choose-tvcontent-time/{{channel.name}}">
+        <img ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_XzVuIUzjldgNkSdiNWDZL0-960YfpY5IuVFqQAdMTrV_PkRJ">
+        <h4>{{channel.name}}</h4>        
+      </a>
+    </div>
   </ion-content>
 </ion-view>
