@@ -48,6 +48,7 @@ angular.module('starter.controllers', [])
 .controller('ChannelsCtrl', function($scope, $stateParams, $http) {
   function transform(data) {
     for (i = 0; i < data.length; i++) {   
+      data[i].name = data[i].name.replace(' ', '_');
       data[i].icon = 'http://beta.tvlive.io/' + data[i].name + '.png';
     }
     return data;
