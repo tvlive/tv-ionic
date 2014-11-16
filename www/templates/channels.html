@@ -5,7 +5,7 @@
   <ion-content class="has-header">
     <div class="list">
       <a ng-repeat="channel in channels" class="item item-avatar" href="#/app/choose-tvcontent-time/{{channel.name}}">
-        <img ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_XzVuIUzjldgNkSdiNWDZL0-960YfpY5IuVFqQAdMTrV_PkRJ">
+        <img ng-src="{{channel.icon}}">
         <h4>{{channel.name}}</h4>        
       </a>
     </div>

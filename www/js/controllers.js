@@ -46,9 +46,15 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChannelsCtrl', function($scope, $stateParams, $http) {
-     $http.get('http://beta.tvlive.io/channels/provider/' + $stateParams.provider).
+  function transform(data) {
+    for (i = 0; i < data.length; i++) {   
+      data[i].icon = 'http://beta.tvlive.io/' + data[i].name + '.png';
+    }
+    return data;
+  }
+  $http.get('http://beta.tvlive.io/channels/provider/' + $stateParams.provider).
         success(function(data) {
-            $scope.channels = data;
+            $scope.channels = transform(data);
         });
 })
 
