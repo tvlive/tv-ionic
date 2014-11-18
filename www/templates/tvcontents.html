@@ -6,8 +6,9 @@
     <div class="list">
       <a ng-repeat="tvContent in tvContents" class="item item-icon-left" href="#/app/details/{{tvContent.id}}">
         <i class="icon ion-email"></i>
+        <h4>{{tvContent.channel}} -  {{tvContent.type}}</h4> 
         <h2>{{tvContent.title}}</h2> 
-        <p>{{tvContent.start}}-{{tvContent.end}}</p>
+        <p>{{tvContent.st}} - {{tvContent.et}}</p>
       </a>
   </div>
   </ion-content>

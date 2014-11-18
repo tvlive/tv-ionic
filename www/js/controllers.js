@@ -1,3 +1,4 @@
+
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
@@ -68,19 +69,34 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TVContentCtrl', function($scope, $stateParams, $http) {
-  function transform(data) {
+  function transform_minutes(minutes){
+    if (minutes == 0) {
+      return '00'
+    }
+    return minutes.toString();  
+  }
+    function transform(data) {
     for (i = 0; i < data.length; i++) {
       if (data[i].series){
-        data[i].title = data[i].series.serieTitle;
+        data[i].title = data[i].series.serieTitle;         
+        data[i].type = 'Series';
       }
 
       if (data[i].program){
-        data[i].title = data[i].program.title;
+        data[i].title = data[i].program.title;      
+        data[i].type = 'Program';
       } 
 
       if (data[i].film){
-        data[i].title = data[i].film.title;
-      }       
+        data[i].title = data[i].film.title;        
+        data[i].type = 'Film';
+      }
+
+      s = new Date(data[i].start);
+      e = new Date(data[i].end);    
+      data[i].st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
+      data[i].et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
+       
     }
       return data;
   }
@@ -92,21 +108,35 @@ angular.module('starter.controllers', [])
 })
 
 .controller('CurrentCtrl', function($scope, $stateParams, $http) {
+   function transform_minutes(minutes){
+    if (minutes == 0) {
+      return '00'
+    }
+    return minutes.toString();  
+  }
+
   function transform(data) {
       if (data.series){
         data.title = data.series.serieTitle;
         data.description = data.series.description;
+        data.type = 'Series';        
       }
 
       if (data.program){
         data.title = data.program.title;
         data.description = data.program.description;
+        data.type = 'Program';
       } 
 
       if (data.film){
         data.title = data.film.title;
         data.description = data.film.description;
+        data.type = 'Film';
       }
+      s = new Date(data.start);
+      e = new Date(data.end);    
+      data.st = s.getHours() + ':' + transform_minutes(s.getMinutes());
+      data.et = e.getHours() + ':' + transform_minutes(e.getMinutes());
       return data;
   }
 
@@ -117,21 +147,35 @@ angular.module('starter.controllers', [])
   })
 
 .controller('DetailsCtrl', function($scope, $stateParams, $http) {
+  function transform_minutes(minutes){
+    if (minutes == 0) {
+      return '00'
+    }
+    return minutes.toString();  
+  }
+
   function transform(data) {
       if (data.series){
         data.title = data.series.serieTitle;
         data.description = data.series.description;
+        data.type = 'Series';        
       }
 
       if (data.program){
         data.title = data.program.title;
         data.description = data.program.description;
+        data.type = 'Program';
       } 
 
       if (data.film){
         data.title = data.film.title;
         data.description = data.film.description;
+        data.type = 'Film';
       }
+      s = new Date(data.start);
+      e = new Date(data.end);    
+      data.st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
+      data.et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
       return data;
   }
 
@@ -142,19 +186,32 @@ angular.module('starter.controllers', [])
   })
 
 .controller('ContentByTypeToday', function($scope, $stateParams, $http) {
+  function transform_minutes(minutes){
+    if (minutes == 0) {
+      return '00'
+    }
+    return minutes.toString();  
+  }
     function transform(data) {
     for (i = 0; i < data.length; i++) {
       if (data[i].series){
-        data[i].title = data[i].series.serieTitle;
+        data[i].title = data[i].series.serieTitle;         
+        data[i].type = 'Series';    
       }
 
       if (data[i].program){
-        data[i].title = data[i].program.title;
+        data[i].title = data[i].program.title;      
+        data[i].type = 'Program';    
       } 
 
       if (data[i].film){
-        data[i].title = data[i].film.title;
+        data[i].title = data[i].film.title;        
+        data[i].type = 'Film';    
       }
+      s = new Date(data[i].start);
+      e = new Date(data[i].end);    
+      data[i].st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
+      data[i].et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
        
     }
       return data;

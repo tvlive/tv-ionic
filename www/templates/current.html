@@ -3,14 +3,22 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-      <ion-item>
+    <div class="list">
+      <div class="item item-icon-left">
+        <i class="icon ion-email"></i>
+        {{details.type}}
+      </div>
+      <div class="item item-icon-left">
+        <i class="icon ion-email"></i>
         {{details.title}}
-      </ion-item>    
-      <ion-item>
-        {{details.start}} - {{details.end}}
-      </ion-item>    
-      <ion-item>
-        {{details.description}}
-      </ion-item>    
+      </div>
+      <div class="item item-icon-left">
+        <i class="icon ion-email"></i>
+        {{details.st}} - {{details.et}}
+      </div>
+      <div class="item item-text-wrap">  
+        <p>{{details.description}}</p>
+      </div>
+  </div>   
   </ion-content>
 </ion-view>
