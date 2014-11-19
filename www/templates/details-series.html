@@ -1,0 +1,36 @@
+<ion-view title="Details AA">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+  <div class="list">
+    <div class="item item-icon-left">
+      <i class="icon ion-email"></i>
+      <h4>Series - {{details.series.serieTitle}}</h4>
+    </div>
+    <div class="item item-icon-left">
+      <i class="icon ion-email"></i>
+      <h4>Episode Title - {{details.series.episodeTitle}}</h4>
+    </div>
+    <div class="item item-icon-left">
+      <i class="icon ion-email"></i>
+      <h4>Season - {{details.series.seasonNumber}}</h4>
+    </div>
+    <div class="item item-icon-left">
+      <i class="icon ion-email"></i>
+      <h4>Episode Number - {{details.series.episodeNumber}}</h4>
+    </div>
+    <div class="item item-icon-left">
+      <i class="icon ion-email"></i>
+      <h4>Total Number - {{details.series.totalNumber}}</h4>
+    </div>
+    <div class="item item-icon-left">
+      <i class="icon ion-email"></i>
+      <h4>{{details.st}} - {{details.et}}</h4>
+    </div>
+    <div class="item item-text-wrap">  
+      <h4>{{details.series.description}}</h4>
+    </div>
+  </div>
+  </ion-content>
+</ion-view>

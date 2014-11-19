@@ -102,12 +102,32 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.details', {
-      url: "/details/:tvContentId",
+    .state('app.detailsFilm', {
+      url: "/details/:tvContentId/Film",
       views: {
         'menuContent' :{
-          templateUrl: "templates/details.html",
-          controller: 'DetailsCtrl'
+          templateUrl: "templates/details-film.html",
+          controller: 'DetailsFilmCtrl'
+        }
+      }
+    })
+
+    .state('app.detailsProgram', {
+      url: "/details/:tvContentId/Program",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/details-program.html",
+          controller: 'DetailsProgramCtrl'
+        }
+      }
+    })
+
+    .state('app.detailsSeries', {
+      url: "/details/:tvContentId/Series",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/details-series.html",
+          controller: 'DetailsSeriesCtrl'
         }
       }
     })

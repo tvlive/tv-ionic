@@ -146,7 +146,7 @@ angular.module('starter.controllers', [])
         });  
   })
 
-.controller('DetailsCtrl', function($scope, $stateParams, $http) {
+.controller('DetailsFilmCtrl', function($scope, $stateParams, $http) {
   function transform_minutes(minutes){
     if (minutes == 0) {
       return '00'
@@ -155,23 +155,50 @@ angular.module('starter.controllers', [])
   }
 
   function transform(data) {
-      if (data.series){
-        data.title = data.series.serieTitle;
-        data.description = data.series.description;
-        data.type = 'Series';        
-      }
+      s = new Date(data.start);
+      e = new Date(data.end);    
+      data.st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
+      data.et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
+      return data;
+  }
 
-      if (data.program){
-        data.title = data.program.title;
-        data.description = data.program.description;
-        data.type = 'Program';
-      } 
+  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
+        success(function(data) {
+            $scope.details = transform(data);
+        });  
+  })
 
-      if (data.film){
-        data.title = data.film.title;
-        data.description = data.film.description;
-        data.type = 'Film';
-      }
+.controller('DetailsSeriesCtrl', function($scope, $stateParams, $http) {
+  function transform_minutes(minutes){
+    if (minutes == 0) {
+      return '00'
+    }
+    return minutes.toString();  
+  }
+
+  function transform(data) {
+      s = new Date(data.start);
+      e = new Date(data.end);    
+      data.st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
+      data.et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
+      return data;
+  }
+
+  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
+        success(function(data) {
+            $scope.details = transform(data);
+        });  
+  })
+
+.controller('DetailsProgramCtrl', function($scope, $stateParams, $http) {
+  function transform_minutes(minutes){
+    if (minutes == 0) {
+      return '00'
+    }
+    return minutes.toString();  
+  }
+
+  function transform(data) {
       s = new Date(data.start);
       e = new Date(data.end);    
       data.st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());

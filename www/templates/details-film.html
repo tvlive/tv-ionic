@@ -6,18 +6,20 @@
   <div class="list">
     <div class="item item-icon-left">
       <i class="icon ion-email"></i>
-      {{details.type}}
+      <h4>Film - {{details.film.title}}</h4>
     </div>
     <div class="item item-icon-left">
       <i class="icon ion-email"></i>
-      {{details.title}}
-    </div>
-    <div class="item item-icon-left">
-      <i class="icon ion-email"></i>
-      {{details.st}} - {{details.et}}
+      <h4>{{details.st}} - {{details.et}}</h4>
     </div>
     <div class="item item-text-wrap">  
-      <p>{{details.description}}</p>
+      <h4>{{details.film.description}}</h4>
+    </div>
+    <div class="item item-text-wrap">  
+      <h4>{{details.film.year}}</h4>
+    </div>
+    <div class="item item-text-wrap">  
+      <h4>{{details.film.actors}}</h4>
     </div>
   </div>
   </ion-content>

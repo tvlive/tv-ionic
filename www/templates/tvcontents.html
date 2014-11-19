@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <div class="list">
-      <a ng-repeat="tvContent in tvContents" class="item item-icon-left" href="#/app/details/{{tvContent.id}}">
+      <a ng-repeat="tvContent in tvContents" class="item item-icon-left" href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">
         <i class="icon ion-email"></i>
         <h4>{{tvContent.channel}} -  {{tvContent.type}}</h4> 
         <h2>{{tvContent.title}}</h2> 
