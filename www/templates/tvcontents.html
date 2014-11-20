@@ -5,10 +5,19 @@
   <ion-content class="has-header">
     <div class="list">
       <a ng-repeat="tvContent in tvContents" class="item item-icon-left" href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">
-        <i class="icon ion-email"></i>
-        <h4>{{tvContent.channel}} -  {{tvContent.type}}</h4> 
-        <h2>{{tvContent.title}}</h2> 
-        <p>{{tvContent.st}} - {{tvContent.et}}</p>
+        <div ng-show="tvContent.now == 0">
+          <i class="icon ion-email"></i>        
+          <h4>{{tvContent.channel}} -  {{tvContent.type}}</h4> 
+          <p>{{tvContent.title}}</p> 
+          <p>{{tvContent.st}} - {{tvContent.et}}</p>          
+        </div> 
+        <div ng-show="tvContent.now == 1">
+          <i class="icon ion-ios7-telephone"></i>        
+          <h4>{{tvContent.channel}} -  {{tvContent.type}}</h4> 
+          <p>{{tvContent.title}}</p> 
+          <p>{{tvContent.st}} - {{tvContent.et}}</p>          
+          <span class="badge badge-assertive">On TV</span>
+        </div> 
       </a>
   </div>
   </ion-content>

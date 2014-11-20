@@ -12,13 +12,13 @@
       <i class="icon ion-email"></i>
       <h4>{{details.st}} - {{details.et}}</h4>
     </div>
-    <div class="item item-text-wrap">  
+    <div ng-show="details.film.description" class="item item-text-wrap">  
       <h4>{{details.film.description}}</h4>
     </div>
-    <div class="item item-text-wrap">  
+    <div ng-show="details.film.year" class="item item-text-wrap">  
       <h4>{{details.film.year}}</h4>
     </div>
-    <div class="item item-text-wrap">  
+    <div ng-show="details.film.actors" class="item item-text-wrap">  
       <h4>{{details.film.actors}}</h4>
     </div>
   </div>

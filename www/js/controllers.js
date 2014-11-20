@@ -94,6 +94,13 @@ angular.module('starter.controllers', [])
 
       s = new Date(data[i].start);
       e = new Date(data[i].end);    
+      now = new Date();
+      if (s < now && now < e) {
+        data[i].now = 1;
+      } else {
+        data[i].now = 0;
+      }
+      
       data[i].st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
       data[i].et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
        
