@@ -60,14 +60,6 @@ angular.module('starter.controllers', [])
         });
 })
 
-.controller('ChooseTVContentTimeCtrl', function($scope, $stateParams) {
-  $scope.tvContentsTime = [
-    { name: 'Today', time: 'today', channel: $stateParams.channel},
-    { name: 'Now', time: 'current', channel: $stateParams.channel},
-    { name: 'Left', time: 'left', channel: $stateParams.channel}
-  ];
-})
-
 .controller('TVContentCtrl', function($scope, $stateParams, $http) {
   function transform_minutes(minutes){
     if (minutes == 0) {
@@ -244,6 +236,13 @@ angular.module('starter.controllers', [])
       }
       s = new Date(data[i].start);
       e = new Date(data[i].end);    
+      now = new Date();
+      if (s < now && now < e) {
+        data[i].now = 1;
+      } else {
+        data[i].now = 0;
+      }
+
       data[i].st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
       data[i].et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
        
@@ -251,7 +250,7 @@ angular.module('starter.controllers', [])
       return data;
   }
   
-  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/today').
+  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/current').
         success(function(data) {
             $scope.tvContents = transform(data);
         });  

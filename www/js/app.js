@@ -52,7 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.contentByTypeToday', {
-      url: "/content-today/:type/:provider",
+      url: "/content-now/:type/:provider",
       views: {
         'menuContent' :{
           templateUrl: "templates/tvcontents.html",
@@ -68,16 +68,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         'menuContent' :{
           templateUrl: "templates/channels.html",
           controller: 'ChannelsCtrl'
-        }
-      }
-    })
-
-    .state('app.chooseTVContentTime', {
-      url: "/choose-tvcontent-time/:channel",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/choose-tvcontent-time.html",
-          controller: 'ChooseTVContentTimeCtrl'
         }
       }
     })

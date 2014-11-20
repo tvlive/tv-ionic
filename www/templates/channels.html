@@ -4,10 +4,11 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <div class="list">
-      <a ng-repeat="channel in channels" class="item item-avatar" href="#/app/choose-tvcontent-time/{{channel.name}}">
+      <a ng-repeat="channel in channels" class="item item-avatar" href="#/app/tvcontents/today/{{channel.name}}">
         <img ng-src="{{channel.icon}}">
         <h4>{{channel.name}}</h4>    
       </a>
     </div>
   </ion-content>
 </ion-view>
+
