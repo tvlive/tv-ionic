@@ -1,26 +1,28 @@
-<ion-view title="Details AA">
+<ion-view title="Film">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
   <div class="list">
-    <div class="item item-icon-left">
-      <i class="icon ion-email"></i>
-      <h4>Film - {{details.film.title}}</h4>
+    <div class="item item-icon-left" href="#">
+     <i class="icon ion-ios7-videocam"></i>
+      {{details.film.title}}
+      <span ng-show="details.film.year" class="item-note">
+        {{details.film.year}}
+      </span>
     </div>
     <div class="item item-icon-left">
-      <i class="icon ion-email"></i>
+      <i class="icon ion-ios7-time-outline"></i>
       <h4>{{details.st}} - {{details.et}}</h4>
     </div>
     <div ng-show="details.film.description" class="item item-text-wrap">  
       <h4>{{details.film.description}}</h4>
     </div>
-    <div ng-show="details.film.year" class="item item-text-wrap">  
-      <h4>{{details.film.year}}</h4>
-    </div>
-    <div ng-show="details.film.actors" class="item item-text-wrap">  
-      <h4>{{details.film.actors}}</h4>
-    </div>
+    <a ng-repeat="actor in details.film.actors" class="item item-icon-left" href="#">
+        <i class="icon ion-person-stalker"></i>
+        <h4>{{actor}}</h4>
+    </a>  
+    
   </div>
   </ion-content>
 </ion-view>
