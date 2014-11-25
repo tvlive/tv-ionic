@@ -47,215 +47,78 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChannelsCtrl', function($scope, $stateParams, $http) {
-  function transform(data) {
-    for (i = 0; i < data.length; i++) {   
-      name = data[i].name.replace(/ /g,"_");
-      data[i].icon = 'http://beta.tvlive.io/' + name + '.png';
-    }
-    return data;
-  }
   $http.get('http://beta.tvlive.io/channels/provider/' + $stateParams.provider).
         success(function(data) {
-            $scope.channels = transform(data);
+            $scope.channels = transform_channel(data);
         });
 })
 
-.controller('TVContentCtrl', function($scope, $stateParams, $http) {
-  function transform_minutes(minutes){
-    if (minutes == 0) {
-      return '00'
-    }
-    return minutes.toString();  
-  }
-    function transform(data) {
-    for (i = 0; i < data.length; i++) {
-      if (data[i].series){
-        data[i].title = data[i].series.serieTitle;         
-        data[i].type = 'Series';
-      }
-
-      if (data[i].program){
-        data[i].title = data[i].program.title;      
-        data[i].type = 'Program';
-      } 
-
-      if (data[i].film){
-        data[i].title = data[i].film.title;        
-        data[i].type = 'Film';
-      }
-
-      s = new Date(data[i].start);
-      e = new Date(data[i].end);    
-      now = new Date();
-      if (s < now && now < e) {
-        data[i].now = 1;
-      } else {
-        data[i].now = 0;
-      }
-      
-      data[i].st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
-      data[i].et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
-       
-    }
-      return data;
-  }
+.controller('TVContentCtrl', function($scope, $stateParams, $http) {    
 
   $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/' + $stateParams.time).
         success(function(data) {
-            $scope.tvContents = transform(data);
+            $scope.tvContents = transform_beta(data);
         });  
 })
 
-.controller('CurrentCtrl', function($scope, $stateParams, $http) {
-   function transform_minutes(minutes){
-    if (minutes == 0) {
-      return '00'
-    }
-    return minutes.toString();  
-  }
-
-  function transform(data) {
-      if (data.series){
-        data.title = data.series.serieTitle;
-        data.description = data.series.description;
-        data.type = 'Series';        
-      }
-
-      if (data.program){
-        data.title = data.program.title;
-        data.description = data.program.description;
-        data.type = 'Program';
-      } 
-
-      if (data.film){
-        data.title = data.film.title;
-        data.description = data.film.description;
-        data.type = 'Film';
-      }
-      s = new Date(data.start);
-      e = new Date(data.end);    
-      data.st = s.getHours() + ':' + transform_minutes(s.getMinutes());
-      data.et = e.getHours() + ':' + transform_minutes(e.getMinutes());
-      return data;
-  }
-
-  $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/current').
-        success(function(data) {
-            $scope.details = transform(data);
-        });  
-  })
 
 .controller('DetailsFilmCtrl', function($scope, $stateParams, $http) {
-  function transform_minutes(minutes){
-    if (minutes == 0) {
-      return '00'
-    }
-    return minutes.toString();  
-  }
-
-  function transform(data) {
-      s = new Date(data.start);
-      e = new Date(data.end);    
-      data.st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
-      data.et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
-      return data;
-  }
-
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
         success(function(data) {
-            $scope.details = transform(data);
+            $scope.details = transform_date_details(data);
         });  
   })
 
 .controller('DetailsSeriesCtrl', function($scope, $stateParams, $http) {
-  function transform_minutes(minutes){
-    if (minutes == 0) {
-      return '00'
-    }
-    return minutes.toString();  
-  }
-
-  function transform(data) {
-      s = new Date(data.start);
-      e = new Date(data.end);    
-      data.st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
-      data.et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
-      return data;
-  }
-
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
         success(function(data) {
-            $scope.details = transform(data);
+            $scope.details = transform_date_details(data);
         });  
   })
 
 .controller('DetailsProgramCtrl', function($scope, $stateParams, $http) {
-  function transform_minutes(minutes){
-    if (minutes == 0) {
-      return '00'
-    }
-    return minutes.toString();  
-  }
-
-  function transform(data) {
-      s = new Date(data.start);
-      e = new Date(data.end);    
-      data.st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
-      data.et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
-      return data;
-  }
-
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
         success(function(data) {
-            $scope.details = transform(data);
+            $scope.details = transform_date_details(data);
         });  
   })
 
 .controller('ContentByTypeToday', function($scope, $stateParams, $http) {
-  function transform_minutes(minutes){
-    if (minutes == 0) {
-      return '00'
-    }
-    return minutes.toString();  
-  }
-    function transform(data) {
-    for (i = 0; i < data.length; i++) {
-      if (data[i].series){
-        data[i].title = data[i].series.serieTitle;         
-        data[i].type = 'Series';    
-      }
+  //   function transform(data) {
+  //     for (i = 0; i < data.length; i++) {
+  //       if (data[i].series){
+  //         data[i].title = data[i].series.serieTitle;         
+  //         data[i].type = 'Series';    
+  //       }
 
-      if (data[i].program){
-        data[i].title = data[i].program.title;      
-        data[i].type = 'Program';    
-      } 
+  //       if (data[i].program){
+  //         data[i].title = data[i].program.title;      
+  //         data[i].type = 'Program';    
+  //       } 
 
-      if (data[i].film){
-        data[i].title = data[i].film.title;        
-        data[i].type = 'Film';    
-      }
-      s = new Date(data[i].start);
-      e = new Date(data[i].end);    
-      now = new Date();
-      if (s < now && now < e) {
-        data[i].now = 1;
-      } else {
-        data[i].now = 0;
-      }
+  //       if (data[i].film){
+  //         data[i].title = data[i].film.title;        
+  //         data[i].type = 'Film';    
+  //       }
+  //       s = new Date(data[i].start);
+  //       e = new Date(data[i].end);    
+  //       now = new Date();
+  //       if (s < now && now < e) {
+  //         data[i].now = 1;
+  //       } else {
+  //         data[i].now = 0;
+  //       }
 
-      data[i].st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
-      data[i].et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
-       
-    }
-      return data;
-  }
+  //       data[i].st = transform_minutes_beta(s.getHours()) + ':' + transform_minutes_beta(s.getMinutes());
+  //       data[i].et = transform_minutes_beta(e.getHours()) + ':' + transform_minutes_beta(e.getMinutes());
+         
+  //     }
+  //       return data;
+  // }
   
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/current').
         success(function(data) {
-            $scope.tvContents = transform(data);
+            $scope.tvContents = transform_beta(data);
         });  
   })
 
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});

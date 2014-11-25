@@ -72,16 +72,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-  .state('app.current', {
-      url: "/tvcontents/current/:channel",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/current.html",
-          controller: 'CurrentCtrl'
-        }
-      }
-    })
-  
     .state('app.tvcontents', {
       url: "/tvcontents/:time/:channel",
       views: {
@@ -122,15 +112,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.single', {
-      url: "/playlists/:playlistId",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/playlist.html",
-          controller: 'PlaylistCtrl'
-        }
-      }
-    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/providers');
 });
