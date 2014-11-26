@@ -53,11 +53,11 @@ angular.module('starter.controllers', [])
         });
 })
 
-.controller('TVContentCtrl', function($scope, $stateParams, $http) {    
+.controller('ListTVContentByChannel', function($scope, $stateParams, $http) {    
 
   $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/' + $stateParams.time).
         success(function(data) {
-            $scope.tvContents = transform_beta(data);
+            $scope.tvContents = transform_list_tv_content(data);
         });  
 })
 
@@ -83,42 +83,10 @@ angular.module('starter.controllers', [])
         });  
   })
 
-.controller('ContentByTypeToday', function($scope, $stateParams, $http) {
-  //   function transform(data) {
-  //     for (i = 0; i < data.length; i++) {
-  //       if (data[i].series){
-  //         data[i].title = data[i].series.serieTitle;         
-  //         data[i].type = 'Series';    
-  //       }
-
-  //       if (data[i].program){
-  //         data[i].title = data[i].program.title;      
-  //         data[i].type = 'Program';    
-  //       } 
-
-  //       if (data[i].film){
-  //         data[i].title = data[i].film.title;        
-  //         data[i].type = 'Film';    
-  //       }
-  //       s = new Date(data[i].start);
-  //       e = new Date(data[i].end);    
-  //       now = new Date();
-  //       if (s < now && now < e) {
-  //         data[i].now = 1;
-  //       } else {
-  //         data[i].now = 0;
-  //       }
-
-  //       data[i].st = transform_minutes_beta(s.getHours()) + ':' + transform_minutes_beta(s.getMinutes());
-  //       data[i].et = transform_minutes_beta(e.getHours()) + ':' + transform_minutes_beta(e.getMinutes());
-         
-  //     }
-  //       return data;
-  // }
-  
+.controller('ListCurrentTVContentByTypeAndProvider', function($scope, $stateParams, $http) {
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/current').
         success(function(data) {
-            $scope.tvContents = transform_beta(data);
+            $scope.tvContents = transform_list_tv_content(data);
         });  
   })
 

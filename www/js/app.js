@@ -56,7 +56,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' :{
           templateUrl: "templates/tvcontents.html",
-          controller: 'ContentByTypeToday'
+          controller: 'ListCurrentTVContentByTypeAndProvider'
         }
       }
     })
@@ -77,7 +77,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' :{
           templateUrl: "templates/tvcontents.html",
-          controller: 'TVContentCtrl'
+          controller: 'ListTVContentByChannel'
         }
       }
     })
