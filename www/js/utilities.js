@@ -1,7 +1,6 @@
 function transform_channel(data) {
 	for (i = 0; i < data.length; i++) {   
-	  name = data[i].name.replace(/ /g,"_");
-	  data[i].icon = 'http://beta.tvlive.io/' + name + '.png';
+	  data[i].icon = 'http://beta.tvlive.io/' + data[i].image;
 	}
 	return data;
 	}
@@ -34,13 +33,6 @@ function transform_list_tv_content(data) {
       e = new Date(data[i].end);    
       data[i].st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
       data[i].et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
-
-      now = new Date();
-      if (s < now && now < e) {
-        data[i].now = 1;
-      } else {
-        data[i].now = 0;
-      }
        
     }
       return data;
