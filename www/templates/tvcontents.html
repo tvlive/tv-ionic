@@ -4,20 +4,14 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <div class="list">
-      <a ng-repeat="tvContent in tvContents" class="item item-icon-left" href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">
-        <div ng-show="tvContent.onTimeNow == false">
-          <i class="icon ion-ios7-star"></i>        
-          <h4>{{tvContent.channel}} - {{tvContent.type}}</h4> 
+      <a ng-repeat="tvContent in tvContents" class="item item-thumbnail-left" href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">
+          <img ng-src="http://beta.tvlive.io/FILM4.png">          
           <p>{{tvContent.title}}</p> 
-          <p>{{tvContent.st}} - {{tvContent.et}}</p>          
-        </div> 
-        <div ng-show="tvContent.onTimeNow == true">
-          <i class="icon ion-ios7-star"></i>        
-          <h4>{{tvContent.channel}} - {{tvContent.type}}</h4> 
-          <p>{{tvContent.title}}</p> 
-          <p>{{tvContent.st}} - {{tvContent.et}}</p>          
-          <span class="badge badge-assertive">On TV</span>
-        </div> 
+          <div ng-show="tvContent.onTimeNow == true">
+            <progress max="100" value="80"></progress>
+          </div>  
+          <p>{{tvContent.st}} - {{tvContent.et}}</p>
+          <span class="badge badge-assertive">{{tvContent.type}}</span>          
       </a>
   </div>
   </ion-content>

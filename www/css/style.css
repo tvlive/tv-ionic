@@ -2,3 +2,8 @@
 .row {
 	text-align: center;
 }
+
+.content {
+border: dashed;	
+}
+
