@@ -6,12 +6,20 @@
     <div class="list">
       <a ng-repeat="tvContent in tvContents" class="item item-thumbnail-left" href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">
           <img ng-src="http://beta.tvlive.io/FILM4.png">          
-          <p>{{tvContent.title}}</p> 
-          <div ng-show="tvContent.onTimeNow == true">
-            <progress max="100" value="80"></progress>
+          <h4>{{tvContent.title}}</h4>           
+          <div class="bara" ng-show="tvContent.perCentTimeElapsed">
+            <progress max="100" value="{{tvContent.perCentTimeElapsed}}"></progress>
           </div>  
-          <p>{{tvContent.st}} - {{tvContent.et}}</p>
-          <span class="badge badge-assertive">{{tvContent.type}}</span>          
+          <p>{{tvContent.st}} - {{tvContent.et}}</p>          
+          <div ng-show="tvContent.type == 'Series'">
+            <span class="badge badge-energized">{{tvContent.type}}</span>          
+          </div>  
+          <div ng-show="tvContent.type == 'Program'">
+            <span class="badge badge-assertive">{{tvContent.type}}</span>          
+          </div>  
+          <div ng-show="tvContent.type == 'Film'">
+            <span class="badge badge-balanced">{{tvContent.type}}</span>          
+          </div>  
       </a>
   </div>
   </ion-content>
