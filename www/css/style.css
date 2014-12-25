@@ -7,3 +7,35 @@
 border: dashed;	
 }
 
+.title-content {
+border: dashed;		
+}
+
+
+.span-series {
+	text-align: center;
+	background-color: #58ACFA;
+	color: #ffffff;
+	font-weight: 500;
+	padding: 10px 20px;
+	border-radius: 25px;
+}
+
+.span-program {
+	text-align: center;
+	background-color: #FE9A2E;
+	color: #ffffff;
+	font-weight: 500;
+	padding: 10px 20px;
+	border-radius: 25px;
+}
+
+.span-film {
+	text-align: center;
+	background-color: #2EFE9A;
+	color: #ffffff;
+	font-weight: 500;
+	padding: 10px 20px;
+	border-radius: 25px;
+}
+

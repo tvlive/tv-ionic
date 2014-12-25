@@ -6,18 +6,18 @@
     <div ng-repeat="channel in channels" ng-if="$index%3==0" class="row">
 
       <div class="col col-33">
-        <a href="#/app/tvcontents/today/{{channels[$index].name}}">
-          <img src="{{channels[$index].icon}}">
+        <a href="#/app/tvcontents/today/{{channels[$index].name}}" >
+          <img src="{{channels[$index].icon}}" alt="{{channels[$index].name}}">
         </a>        
       </div>      
        <div class="col col-33">
-        <a href="#/app/tvcontents/today/{{channels[$index+1].name}}">
-          <img src="{{channels[$index+1].icon}}">
+        <a href="#/app/tvcontents/today/{{channels[$index+1].name}}" >
+          <img src="{{channels[$index+1].icon}}" alt="{{channels[$index+1].name}}">
         </a>        
       </div>      
        <div class="col col-33">
-        <a href="#/app/tvcontents/today/{{channels[$index+2].name}}">
-          <img src="{{channels[$index+2].icon}}">
+        <a href="#/app/tvcontents/today/{{channels[$index+2].name}}" >
+          <img src="{{channels[$index+2].icon}}" alt="{{channels[$index+2].name}}">
         </a>        
       </div>      
     </div>      
