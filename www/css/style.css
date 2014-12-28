@@ -11,14 +11,12 @@ border: dashed;
 border: dashed;		
 }
 
-
 .span-series {
 	text-align: center;
 	background-color: #58ACFA;
 	color: #ffffff;
 	font-weight: 500;
-	padding: 10px 20px;
-	border-radius: 25px;
+	padding: 3px 50px;		
 }
 
 .span-program {
@@ -26,8 +24,7 @@ border: dashed;
 	background-color: #FE9A2E;
 	color: #ffffff;
 	font-weight: 500;
-	padding: 10px 20px;
-	border-radius: 25px;
+	padding: 3px 40px;		
 }
 
 .span-film {
@@ -35,7 +32,26 @@ border: dashed;
 	background-color: #2EFE9A;
 	color: #ffffff;
 	font-weight: 500;
-	padding: 10px 20px;
-	border-radius: 25px;
+	padding: 3px 55px;		
 }
 
+.content-title {
+	padding-top: 10px;
+}
+
+.content-description {
+	text-align: justify;
+	background-color: #A9F5D0;
+}
+.film-actor {
+	text-align: left;
+}
+
+.progress-bar {
+	padding-left: 15px;
+	padding-right: 15px;
+
+	
+
+
+}

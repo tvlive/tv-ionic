@@ -8,8 +8,10 @@
           <div class="row">
             <div class="col col-33">
               <img ng-src="http://beta.tvlive.io{{tvContent.channelImageURL}}" alt="{{tvContent.channel}}">          
-              <p><small>{{tvContent.st}} - {{tvContent.et}}</small></p>          
-              <div ng-show="tvContent.type == 'Series'">
+              <p><small>{{tvContent.st}} - {{tvContent.et}}</small></p>                        
+            </div>    
+            <div class="col col-66">
+                <div ng-show="tvContent.type == 'Series'">
                   <span class="span-series">{{tvContent.type}}</span>          
                 </div>  
                 <div ng-show="tvContent.type == 'Program'">
@@ -18,16 +20,17 @@
                 <div ng-show="tvContent.type == 'Film'">
                   <span class="span-film">{{tvContent.type}}</span>          
                 </div>
-            </div>    
-            <div class="col col-66">
                 <div>
-                  <h3>{{tvContent.title}}</h3>           
+                  <h3 class="content-title">{{tvContent.title}}</h3>           
                 </div>
-                <div ng-show="tvContent.perCentTimeElapsed">
+                <div ng-show="tvContent.perCentTimeElapsed" class="progress-bar">
                   <progress max="100" value="{{tvContent.perCentTimeElapsed}}"></progress>
                 </div>                                            
             </div>
           </div>  
    </a>    
   </ion-content>
+  <ion-footer-bar align-title="center" class="bar-assertive">
+    <h1 class="title">Beta</h1>
+  </ion-footer-bar>
 </ion-view>
