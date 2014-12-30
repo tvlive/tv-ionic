@@ -50,8 +50,8 @@ border: dashed;
 .progress-bar {
 	padding-left: 15px;
 	padding-right: 15px;
+}
 
-	
-
-
+.tv-content-passed {
+	background-color: #BDBDBD;
 }

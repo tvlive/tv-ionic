@@ -3,7 +3,7 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-     <a ng-repeat="tvContent in tvContents" class="item"  href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">
+     <a ng-repeat="tvContent in tvContents" class="item" ng-class="{'tv-content-passed':tvContent.passed}"  href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">
           
           <div class="row">
             <div class="col col-33">
