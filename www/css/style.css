@@ -55,3 +55,8 @@ border: dashed;
 .tv-content-passed {
 	background-color: #BDBDBD;
 }
+
+a.disabled {
+   pointer-events: none;
+   cursor: default;
+}
