@@ -1,6 +1,39 @@
 
 angular.module('starter.controllers', [])
 
+
+.directive("delayedScroll", function($location, $ionicScrollDelegate) {
+  
+  return {
+    restrict : "A",
+    link : function(scope, elem, attrs) {
+      
+      console.log("ScrollTo=" + attrs.scrollTo);
+      console.log("Total Items=" + attrs.totalItems);
+      var monitorChildren = function() {
+        return elem.children()[0].children.length;
+      };
+      
+      scope.$on("items-loaded", function() {
+        
+        scope.$watch(monitorChildren, function(result) {
+
+          console.log("Result=" + result);
+          if( parseInt(result,10) == parseInt(attrs.totalItems, 10) ) {
+            console.log("All elements rendered!");
+            
+            $location.hash(attrs.scrollTo);
+            console.log("Scrolling to " + attrs.scrollTo);
+            $ionicScrollDelegate.anchorScroll();
+          }
+        });
+
+      });
+      
+    }
+  }
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
@@ -53,12 +86,24 @@ angular.module('starter.controllers', [])
         });
 })
 
-.controller('ListTVContentByChannel', function($scope, $stateParams, $http) {    
-
+.controller('ListTVContentByChannel', function($scope, $stateParams, $http, $timeout) {    
+$scope.loadData = function() {
   $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/' + $stateParams.time).
         success(function(data) {
             $scope.tvContents = transform_list_tv_content(data);
-        });  
+        });
+
+  $timeout( function() {
+  $scope.totalItems = $scope.tvContents.length;
+  $scope.scrollTo = Math.floor(Math.random() * ($scope.totalItems - 0 + 1)) + 0
+  $scope.$broadcast("items-loaded");
+        
+    }, 10);      
+  }
+  console.log("aaa" + $scope.data)
+  console.log("aaa" + $scope.scrollTo)       
+  $scope.loadData()
+         
 })
 
 
@@ -67,6 +112,7 @@ angular.module('starter.controllers', [])
         success(function(data) {
             $scope.details = transform_date_details(data);
         });  
+
   })
 
 .controller('DetailsSeriesCtrl', function($scope, $stateParams, $http) {
