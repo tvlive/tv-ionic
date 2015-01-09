@@ -1,6 +1,36 @@
 
 angular.module('starter.controllers', [])
 
+
+.directive("delayedScroll", function($location, $ionicScrollDelegate) {
+  
+  return {
+    restrict : "A",
+    link : function(scope, elem, attrs) {
+      
+      // console.log("ScrollTo=" + attrs.scrollTo);
+      // console.log("Total Items=" + attrs.totalItems);
+      var monitorChildren = function() {
+        return elem.children()[0].children.length;
+      };
+      
+      scope.$on("items-loaded", function() {
+        
+        scope.$watch(monitorChildren, function(result) {
+
+          // console.log("Result=" + result);
+          if( parseInt(result,10) == parseInt(attrs.totalItems, 10) ) {
+            // console.log("All elements rendered!");          
+            $location.hash(attrs.scrollTo);
+            // console.log("Scrolling to " + attrs.scrollTo);
+            $ionicScrollDelegate.anchorScroll();
+          }
+        });
+      });      
+    }
+  }
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
@@ -57,17 +87,36 @@ angular.module('starter.controllers', [])
         });
 })
 
-.controller('ListTVContentByChannel', function($scope, $stateParams, $http, $ionicLoading) {    
+.controller('ListTVContentByChannel', function($scope, $stateParams, $http, $ionicLoading, $timeout) {    
 
-  $ionicLoading.show({
+ $scope.data = {
+    scrollTo: 0,
+    totalItems : 0,
+    tvContents : []
+  };
+
+ $ionicLoading.show({
     template: 'Loading'
   });
 
-  $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/' + $stateParams.time).
-        success(function(data) {
-            $scope.tvContents = transform_list_tv_content(data);
-            $ionicLoading.hide();
-        });  
+  $scope.loadData = function() {
+
+    $scope.data.tvContents = [];
+    $timeout( function() {
+      $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/' + $stateParams.time).
+            success(function(data) {
+                $scope.data.tvContents = transform_list_tv_content(data);
+                $scope.data.totalItems = $scope.data.tvContents.length;
+                $scope.data.scrollTo = scroll_to($scope.data.tvContents)
+                console.log("calculated is " + $scope.data.scrollTo)
+                $ionicLoading.hide();
+
+            });              
+      $scope.$broadcast("items-loaded");      
+    }, 1200);
+  }
+  
+  $scope.loadData();
 })
 
 
@@ -105,15 +154,15 @@ angular.module('starter.controllers', [])
         });  
   })
 
-.controller('ListCurrentTVContentByTypeAndProvider', function($scope, $stateParams, $http, $ionicLoading) {
-  $ionicLoading.show({
+.controller('ListCurrentTVContentByTypeAndProvider', function($scope, $stateParams, $http, $ionicLoading, $timeout) {
+$scope.data = [];
+ $ionicLoading.show({
     template: 'Loading'
   });
 
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/current').
-        success(function(data) {
-            $scope.tvContents = transform_list_tv_content(data);
-            $ionicLoading.hide();
-        });  
-  })
-
+            success(function(data) {
+                $scope.data.tvContents = transform_list_tv_content(data);
+                $ionicLoading.hide();
+            });                    
+}); 

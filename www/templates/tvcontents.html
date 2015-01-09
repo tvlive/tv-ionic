@@ -2,33 +2,34 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-  <ion-content class="has-header">
-     <a ng-repeat="tvContent in tvContents" class="item" ng-class="{'tv-content-passed':tvContent.passed}"  href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">
-          
-          <div class="row">
-            <div class="col col-33">
-              <img ng-src="http://beta.tvlive.io{{tvContent.channelImageURL}}" alt="{{tvContent.channel}}">          
-              <p><small>{{tvContent.st}} - {{tvContent.et}}</small></p>                        
-            </div>    
-            <div class="col col-66">
-                <div ng-show="tvContent.type == 'Series'">
-                  <span class="span-series">{{tvContent.type}}</span>          
-                </div>  
-                <div ng-show="tvContent.type == 'Program'">
-                  <span class="span-program">{{tvContent.type}}</span>          
-                </div>  
-                <div ng-show="tvContent.type == 'Film'">
-                  <span class="span-film">{{tvContent.type}}</span>          
-                </div>
-                <div>
-                  <h3 class="content-title">{{tvContent.title}}</h3>           
-                </div>
-                <div ng-show="tvContent.perCentTimeElapsed" class="progress-bar" focus="true">
-                  <progress max="100" value="{{tvContent.perCentTimeElapsed}}"></progress>
-                </div>                                            
-            </div>
-          </div>  
-   </a>    
+    <ion-content class="has-header">
+      <ion-list delayed-scroll scroll-to="{{data.scrollTo}}" total-items="{{data.totalItems}}">      
+       <a id="{{$index}}" ng-repeat="tvContent in data.tvContents" class="item" ng-class="{'tv-content-passed':tvContent.passed}"  href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">          
+            <div class="row">
+              <div class="col col-33">
+                <img ng-src="http://beta.tvlive.io{{tvContent.channelImageURL}}" alt="{{tvContent.channel}}">          
+                <p><small>{{tvContent.st}} - {{tvContent.et}}</small></p>                        
+              </div>    
+              <div class="col col-66">
+                  <div ng-show="tvContent.type == 'Series'">
+                    <span class="span-series">{{tvContent.type}}</span>          
+                  </div>  
+                  <div ng-show="tvContent.type == 'Program'">
+                    <span class="span-program">{{tvContent.type}}</span>          
+                  </div>  
+                  <div ng-show="tvContent.type == 'Film'">
+                    <span class="span-film">{{tvContent.type}}</span>          
+                  </div>
+                  <div>
+                    <h3 class="content-title">{{tvContent.title}}</h3>           
+                  </div>
+                  <div ng-show="tvContent.perCentTimeElapsed" class="progress-bar" focus="true">
+                    <progress max="100" value="{{tvContent.perCentTimeElapsed}}"></progress>
+                  </div>                                            
+              </div>
+            </div>  
+     </a> 
+    </ion-list>   
   </ion-content>
   <ion-footer-bar align-title="center" class="bar-assertive">
     <h1 class="title">Beta</h1>
