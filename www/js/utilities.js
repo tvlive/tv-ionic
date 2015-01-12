@@ -58,3 +58,11 @@ function transform_list_tv_content(data) {
     }
     return 0;
   }
+
+  function build_type(type_content) {
+    if (type_content == 'series') {
+      return 'Series';
+     } else if (type_content == 'film') {
+      return 'Films';
+    } else return 'Programs';    
+  }

@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: "/content-now/:type/:provider",
       views: {
         'menuContent' :{
-          templateUrl: "templates/tvcontents.html",
+          templateUrl: "templates/tvcontents-now.html",
           controller: 'ListCurrentTVContentByTypeAndProvider'
         }
       }

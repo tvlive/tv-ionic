@@ -108,10 +108,15 @@ angular.module('starter.controllers', [])
                 $scope.data.tvContents = transform_list_tv_content(data);
                 $scope.data.totalItems = $scope.data.tvContents.length;
                 $scope.data.scrollTo = scroll_to($scope.data.tvContents)
-                console.log("calculated is " + $scope.data.scrollTo)
+                // console.log("calculated is " + $scope.data.scrollTo)
                 $ionicLoading.hide();
 
-            });              
+            }).
+            error(function(data, status){
+              // console.info('error getting current content ') 
+              $ionicLoading.hide();
+              $scope.error = true
+        });              
       $scope.$broadcast("items-loaded");      
     }, 1200);
   }
@@ -155,14 +160,20 @@ angular.module('starter.controllers', [])
   })
 
 .controller('ListCurrentTVContentByTypeAndProvider', function($scope, $stateParams, $http, $ionicLoading, $timeout) {
-$scope.data = [];
+  $scope.data = [];
  $ionicLoading.show({
     template: 'Loading'
   });
 
+ $scope.type = build_type($stateParams.type);
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/current').
             success(function(data) {
                 $scope.data.tvContents = transform_list_tv_content(data);
                 $ionicLoading.hide();
-            });                    
+            }).
+            error(function(data, status){
+              // console.info('error getting current content ') 
+              $ionicLoading.hide();
+              $scope.error = true
+        });                      
 }); 
