@@ -50,10 +50,12 @@ function transform_list_tv_content(data) {
 
   function scroll_to(data) {
     for (i = 0; i < data.length; i++) {
-      console.log(data[i].passed)
       if (!data[i].passed) {
           console.log("passed:" + i)
-          return i;          
+          if (i > 0) 
+            return i - 1;
+          else
+            return 0;          
       }
     }
     return 0;
