@@ -60,3 +60,18 @@ a.disabled {
    pointer-events: none;
    cursor: default;
 }
+
+.above-no-tv-content {
+	padding-top: 100px;	
+}
+.no-tv-content {
+	padding-top: 10px;	
+	padding-right: 50px;
+	padding-left: 50px;	
+	background-color: #FF0000; 
+}
+.no-tv-content .span-message {
+	color: #E6E6E6;
+}
+
+

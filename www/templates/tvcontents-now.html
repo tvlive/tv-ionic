@@ -1,9 +1,15 @@
 <ion-view title="{{type}}">
     <ion-content class="has-header">
-     <div class="row" ng-show="error">
-            <div class="col">
-              <h3>No {{type}} right now on the TV</h3>                      
-            </div>    
+     <div ng-show="error"> 
+      <div class="row">
+          <div class="col above-no-tv-content">            
+          </div>    
+        </div>
+       <div class="row">
+          <div class="col no-tv-content">
+            <h3><span class="span-message">No {{type}} right now on the TV</span></h3>                      
+          </div>    
+        </div>
       </div>  
       <ion-list delayed-scroll scroll-to="{{data.scrollTo}}" total-items="{{data.totalItems}}">      
        <a id="{{$index}}" ng-repeat="tvContent in data.tvContents" class="item" ng-class="{'tv-content-passed':tvContent.passed}"  href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">          
