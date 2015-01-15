@@ -166,6 +166,7 @@ angular.module('starter.controllers', [])
   });
 
  $scope.type = build_type($stateParams.type);
+ $scope.title = build_title_current($stateParams.type);
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/current').
             success(function(data) {
                 $scope.data.tvContents = transform_list_tv_content(data);
