@@ -24,6 +24,17 @@
                   </div>
                   <div>
                     <h3 class="content-title">{{tvContent.title}}</h3>           
+                    <div ng-show="tvContent.type == 'Series'">
+                      <p><small>{{tvContent.series.episodeTitle}}</small></p>           
+                      <p>    
+                          <span ng-show="tvContent.series.episodeNumber">
+                            <small>Episode {{tvContent.series.episodeNumber}}</small>        
+                          </span>
+                          <span ng-show="tvContent.series.seasonNumber">
+                            <small>Season {{tvContent.series.seasonNumber}}</small>
+                          </span>
+                      </p>
+                    </div>
                   </div>
                   <div ng-show="tvContent.perCentTimeElapsed" class="progress-bar" focus="true">
                     <progress max="100" value="{{tvContent.perCentTimeElapsed}}"></progress>
