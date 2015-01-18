@@ -77,13 +77,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChannelsCtrl', function($scope, $stateParams, $http, $ionicLoading) {
-  $ionicLoading.show({
-    template: 'Loading'
-  });
   $http.get('http://beta.tvlive.io/channels/provider/' + $stateParams.provider).
         success(function(data) {
             $scope.channels = transform_channel(data);
-            $ionicLoading.hide();
         });
 })
 
@@ -95,10 +91,6 @@ angular.module('starter.controllers', [])
     tvContents : []
   };
 
- $ionicLoading.show({
-    template: 'Loading'
-  });
-
   $scope.loadData = function() {
 
     $scope.data.tvContents = [];
@@ -108,73 +100,47 @@ angular.module('starter.controllers', [])
                 $scope.data.tvContents = transform_list_tv_content(data);
                 $scope.data.totalItems = $scope.data.tvContents.length;
                 $scope.data.scrollTo = scroll_to($scope.data.tvContents)
-                // console.log("calculated is " + $scope.data.scrollTo)
-                $ionicLoading.hide();
-
             }).
             error(function(data, status){
-              // console.info('error getting current content ') 
-              $ionicLoading.hide();
               $scope.error = true
         });              
       $scope.$broadcast("items-loaded");      
     }, 1200);
-  }
-  
+  }  
   $scope.loadData();
 })
 
 
 .controller('DetailsFilmCtrl', function($scope, $stateParams, $http, $ionicLoading) {
-  $ionicLoading.show({
-    template: 'Loading'
-  });
-
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
         success(function(data) {
             $scope.details = transform_date_details(data);
-            $ionicLoading.hide();
         });  
   })
 
 .controller('DetailsSeriesCtrl', function($scope, $stateParams, $http, $ionicLoading) {
-  $ionicLoading.show({
-    template: 'Loading'
-  });
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
         success(function(data) {
             $scope.details = transform_date_details(data);
-            $ionicLoading.hide();
         });  
   })
 
 .controller('DetailsProgramCtrl', function($scope, $stateParams, $http, $ionicLoading) {
-  $ionicLoading.show({
-    template: 'Loading'
-  });
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
         success(function(data) {
             $scope.details = transform_date_details(data);
-            $ionicLoading.hide();
         });  
   })
 
 .controller('ListCurrentTVContentByTypeAndProvider', function($scope, $stateParams, $http, $ionicLoading, $timeout) {
   $scope.data = [];
- $ionicLoading.show({
-    template: 'Loading'
-  });
-
- $scope.type = build_type($stateParams.type);
- $scope.title = build_title_current($stateParams.type);
+  $scope.type = build_type($stateParams.type);
+  $scope.title = build_title_current($stateParams.type);
   $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/current').
             success(function(data) {
                 $scope.data.tvContents = transform_list_tv_content(data);
-                $ionicLoading.hide();
             }).
             error(function(data, status){
-              // console.info('error getting current content ') 
-              $ionicLoading.hide();
               $scope.error = true
         });                      
 }); 
