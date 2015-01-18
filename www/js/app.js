@@ -64,8 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: "/providers",
       views: {
         'menuContent' :{
-          templateUrl: "templates/providers.html",
-          controller: 'ProvidersCtrl'
+          templateUrl: "templates/providers.html"          
         }
       }
     })

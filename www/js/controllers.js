@@ -52,14 +52,6 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ProvidersCtrl', function($scope) {
-  $scope.providers = [
-    { name: 'Freeview', id: 1 },
-    { name: 'Sky & Cable', id: 2 },
-    { name: 'Terrestrial', id: 3 }    
-  ];
-})
-
 .controller('OptionsByProviderCtrl', function($scope, $stateParams) {
   $scope.provider = $stateParams.provider;  
 })
