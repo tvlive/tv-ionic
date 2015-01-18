@@ -56,8 +56,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('app', {
       url: "/app",
       abstract: true,
-      templateUrl: "templates/menu.html",
-      controller: 'AppCtrl'
+      templateUrl: "templates/menu.html",      
     })
 
 
@@ -117,7 +116,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' :{
           templateUrl: "templates/details-film.html",
-          controller: 'DetailsFilmCtrl'
+          controller: 'DetailsCtrl'
         }
       }
     })
@@ -127,7 +126,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' :{
           templateUrl: "templates/details-program.html",
-          controller: 'DetailsProgramCtrl'
+          controller: 'DetailsCtrl'
         }
       }
     })
@@ -137,7 +136,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' :{
           templateUrl: "templates/details-series.html",
-          controller: 'DetailsSeriesCtrl'
+          controller: 'DetailsCtrl'
         }
       }
     })

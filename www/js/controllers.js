@@ -1,6 +1,27 @@
 
 angular.module('starter.controllers', [])
 
+.service('contentConnector', function ($http) {
+    this.listChannels = function (provider, callback) {
+         $http.get('http://beta.tvlive.io/channels/provider/' + provider).
+          success(callback);        
+    }
+    this.detailsContent = function (id, callback) {
+         $http.get('http://beta.tvlive.io/tvcontent/' + id).
+          success(callback);        
+    }
+    this.currentContent = function (provider, type, success_callback, error_callback) {
+         $http.get('http://beta.tvlive.io/tvcontent/' + type + '/' + provider + '/current').
+          success(success_callback).
+          error(error_callback);        
+    }
+    this.contentByChannel = function (channel, time, success_callback, error_callback) {
+         $http.get('http://beta.tvlive.io/tvcontent/channel/' + channel + '/' + time).
+          success(success_callback).
+          error(error_callback);        
+    }
+
+})  
 
 .directive("delayedScroll", function($location, $ionicScrollDelegate) {
   
@@ -31,39 +52,6 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-})
-
 .controller('ProvidersCtrl', function($scope) {
   $scope.providers = [
     { name: 'Freeview', id: 1 },
@@ -76,14 +64,20 @@ angular.module('starter.controllers', [])
   $scope.provider = $stateParams.provider;  
 })
 
-.controller('ChannelsCtrl', function($scope, $stateParams, $http, $ionicLoading) {
-  $http.get('http://beta.tvlive.io/channels/provider/' + $stateParams.provider).
-        success(function(data) {
+.controller('ChannelsCtrl', function($scope, $stateParams, contentConnector) {
+    contentConnector.listChannels($stateParams.provider, function(data) {
             $scope.channels = transform_channel(data);
-        });
+        })
 })
 
-.controller('ListTVContentByChannel', function($scope, $stateParams, $http, $ionicLoading, $timeout) {    
+
+.controller('DetailsCtrl', function($scope, $stateParams, contentConnector) {
+    contentConnector.detailsContent($stateParams.tvContentId, function(data) {
+            $scope.details = transform_date_details(data);
+        })
+  })
+
+.controller('ListTVContentByChannel', function($scope, $stateParams, $timeout, contentConnector) {    
 
  $scope.data = {
     scrollTo: 0,
@@ -95,52 +89,26 @@ angular.module('starter.controllers', [])
 
     $scope.data.tvContents = [];
     $timeout( function() {
-      $http.get('http://beta.tvlive.io/tvcontent/channel/' + $stateParams.channel + '/' + $stateParams.time).
-            success(function(data) {
+      contentConnector.contentByChannel($stateParams.channel, $stateParams.time ,function(data) {
                 $scope.data.tvContents = transform_list_tv_content(data);
                 $scope.data.totalItems = $scope.data.tvContents.length;
                 $scope.data.scrollTo = scroll_to($scope.data.tvContents)
-            }).
-            error(function(data, status){
+            },function(data, status){
               $scope.error = true
-        });              
+        })              
       $scope.$broadcast("items-loaded");      
     }, 1200);
   }  
   $scope.loadData();
 })
 
-
-.controller('DetailsFilmCtrl', function($scope, $stateParams, $http, $ionicLoading) {
-  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
-        success(function(data) {
-            $scope.details = transform_date_details(data);
-        });  
-  })
-
-.controller('DetailsSeriesCtrl', function($scope, $stateParams, $http, $ionicLoading) {
-  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
-        success(function(data) {
-            $scope.details = transform_date_details(data);
-        });  
-  })
-
-.controller('DetailsProgramCtrl', function($scope, $stateParams, $http, $ionicLoading) {
-  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.tvContentId).
-        success(function(data) {
-            $scope.details = transform_date_details(data);
-        });  
-  })
-
-.controller('ListCurrentTVContentByTypeAndProvider', function($scope, $stateParams, $http, $ionicLoading, $timeout) {
+.controller('ListCurrentTVContentByTypeAndProvider', function($scope, $stateParams, contentConnector) {
   $scope.data = [];
   $scope.type = build_type($stateParams.type);
   $scope.title = build_title_current($stateParams.type);
-  $http.get('http://beta.tvlive.io/tvcontent/' + $stateParams.type + '/' + $stateParams.provider + '/current').
-            success(function(data) {
+  contentConnector.currentContent($stateParams.provider, $stateParams.type,function(data) {
                 $scope.data.tvContents = transform_list_tv_content(data);
-            }).
-            error(function(data, status){
+            },function(data, status){
               $scope.error = true
-        });                      
+        })                      
 }); 
