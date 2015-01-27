@@ -8,7 +8,7 @@
             <div class="col col-66">
                 <div>
                   <h4 class="content-title">{{details.series.serieTitle}}</h4>           
-                  <h5>{{details.series.episodeTitle}}</h5>
+                  <h5>{{details.series.episode.episodeTitle}}</h5>
                 </div>
 
                 <div ng-show="details.perCentTimeElapsed" class="progress-bar">
@@ -17,24 +17,24 @@
             </div>
     </div>  
     <div class="row">
-      <div ng-show="details.series.description" class="col content-description">  
-        <h5>{{details.series.description}}</h5>
+      <div ng-show="details.series.episode.episodePlot" class="col content-description">  
+        <h5>{{details.series.episode.episodePlot}}</h5>
       </div>
     </div>
 
     <div class="row">
-        <div class"col" ng-show="details.series.seasonNumber">
-          <h5>Season {{details.series.seasonNumber}}</h5>
+        <div class"col" ng-show="details.series.episode.seasonNumber">
+          <h5>Season {{details.series.episode.seasonNumber}}</h5>
         </div>      
     </div>
     <div class="row">
-        <div class"col" ng-show="details.series.episodeNumber">
-          <h5>Episode Number {{details.series.episodeNumber}}</h5>
+        <div class"col" ng-show="details.series.episode.episodeNumber">
+          <h5>Episode Number {{details.series.episode.episodeNumber}}</h5>
         </div>      
     </div>
     <div class="row">
-        <div class"col" ng-show="details.series.totalNumber">
-          <h5>Total Number - {{details.series.totalNumber}}</h5>
+        <div class"col" ng-show="details.series.episode.totalNumber">
+          <h5>Total Number - {{details.series.episode.totalNumber}}</h5>
         </div>      
     </div>
   </ion-content>

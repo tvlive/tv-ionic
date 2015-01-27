@@ -25,13 +25,13 @@
                   <div>
                     <h3 class="content-title">{{tvContent.title}}</h3>           
                     <div ng-show="tvContent.type == 'Series'">
-                      <p><small>{{tvContent.series.episodeTitle}}</small></p>           
+                      <p><small>{{tvContent.series.episode.episodeTitle}}</small></p>           
                       <p>    
-                          <span ng-show="tvContent.series.episodeNumber">
-                            <small>Episode {{tvContent.series.episodeNumber}}</small>        
+                          <span ng-show="tvContent.series.episode.episodeNumber">
+                            <small>Episode {{tvContent.series.episode.episodeNumber}}</small>        
                           </span>
-                          <span ng-show="tvContent.series.seasonNumber">
-                            <small>Season {{tvContent.series.seasonNumber}}</small>
+                          <span ng-show="tvContent.series.episode.seasonNumber">
+                            <small>Season {{tvContent.series.episode.seasonNumber}}</small>
                           </span>
                       </p>
                     </div>
