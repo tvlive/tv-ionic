@@ -3,20 +3,20 @@ angular.module('starter.controllers', [])
 
 .service('contentConnector', function ($http) {
     this.listChannels = function (provider, callback) {
-         $http.get('http://beta.tvlive.io/channels/provider/' + provider).
+         $http.get('http://localhost/channels/provider/' + provider).
           success(callback);        
     }
     this.detailsContent = function (id, callback) {
-         $http.get('http://beta.tvlive.io/tvcontent/' + id).
+         $http.get('http://localhost/tvcontent/' + id).
           success(callback);        
     }
     this.currentContent = function (provider, type, success_callback, error_callback) {
-         $http.get('http://beta.tvlive.io/tvcontent/' + type + '/' + provider + '/current').
+         $http.get('http://localhost/tvcontent/' + type + '/' + provider + '/current').
           success(success_callback).
           error(error_callback);        
     }
     this.contentByChannel = function (channel, time, success_callback, error_callback) {
-         $http.get('http://beta.tvlive.io/tvcontent/channel/' + channel + '/' + time).
+         $http.get('http://localhost/tvcontent/channel/' + channel + '/' + time).
           success(success_callback).
           error(error_callback);        
     }
@@ -101,6 +101,8 @@ angular.module('starter.controllers', [])
   contentConnector.currentContent($stateParams.provider, $stateParams.type,function(data) {
                 $scope.data.tvContents = transform_list_tv_content(data);
             },function(data, status){
+              console.debug('this is an error in the http GET ' + data)
+              console.debug('this is an error in the http GET ' + status)
               $scope.error = true
         })                      
 }); 

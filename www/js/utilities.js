@@ -13,19 +13,22 @@ function transform_minutes(minutes){
   }
 
 function transform_list_tv_content(data) {
+    console.debug("asasasa")
     for (i = 0; i < data.length; i++) {
       if (data[i].series){
-        data[i].title = data[i].series.serieTitle;         
+        data[i].title = data[i].series.serieTitle;  
+        data[i].rating = data[i].series.rating;         
         data[i].type = 'Series';
       }
 
       if (data[i].program){
-        data[i].title = data[i].program.title;      
+        data[i].title = data[i].program.title;  
         data[i].type = 'Program';
       } 
 
       if (data[i].film){
-        data[i].title = data[i].film.title;        
+        data[i].title = data[i].film.title;   
+        data[i].rating = data[i].film.rating;      
         data[i].type = 'Film';
       }
 
