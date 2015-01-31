@@ -3,20 +3,20 @@ angular.module('starter.controllers', [])
 
 .service('contentConnector', function ($http) {
     this.listChannels = function (provider, callback) {
-         $http.get('http://localhost/channels/provider/' + provider).
+         $http.get('http://beta.tvlive.io/channels/provider/' + provider).
           success(callback);        
     }
     this.detailsContent = function (id, callback) {
-         $http.get('http://localhost/tvcontent/' + id).
+         $http.get('http://beta.tvlive.io/tvcontent/' + id).
           success(callback);        
     }
     this.currentContent = function (provider, type, success_callback, error_callback) {
-         $http.get('http://localhost/tvcontent/' + type + '/' + provider + '/current').
+         $http.get('http://beta.tvlive.io/tvcontent/' + type + '/' + provider + '/current').
           success(success_callback).
           error(error_callback);        
     }
     this.contentByChannel = function (channel, time, success_callback, error_callback) {
-         $http.get('http://localhost/tvcontent/channel/' + channel + '/' + time).
+         $http.get('http://beta.tvlive.io/tvcontent/channel/' + channel + '/' + time).
           success(success_callback).
           error(error_callback);        
     }
