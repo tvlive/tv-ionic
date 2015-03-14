@@ -111,7 +111,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
     .state('app.detailsFilm', {
-      url: "/details/:tvContentId/Film",
+      url: "/details/:tvContentId/Film?parameter",
       views: {
         'menuContent' :{
           templateUrl: "templates/details-film.html",
@@ -121,7 +121,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
     .state('app.detailsProgram', {
-      url: "/details/:tvContentId/Program",
+      url: "/details/:tvContentId/Program?parameter",
       views: {
         'menuContent' :{
           templateUrl: "templates/details-program.html",
@@ -131,7 +131,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
     .state('app.detailsSeries', {
-      url: "/details/:tvContentId/Series",
+      url: "/details/:tvContentId/Series?parameter",
       views: {
         'menuContent' :{
           templateUrl: "templates/details-series.html",

@@ -6,10 +6,10 @@
             </div>    
       </div>  
       <ion-list delayed-scroll scroll-to="{{data.scrollTo}}" total-items="{{data.totalItems}}">      
-       <a id="{{$index}}" ng-repeat="tvContent in data.tvContents" class="item" ng-class="{'tv-content-passed':tvContent.passed}"  href="#/app/details/{{tvContent.id}}/{{tvContent.type}}">          
+       <a id="{{$index}}" ng-repeat="tvContent in data.tvContents" class="item" ng-class="{'tv-content-passed':tvContent.passed}"  href="#/app/details/1/{{tvContent.type}}?parameter={{tvContent.uriTVContentDetails}}">          
             <div class="row">
               <div class="col col-33">
-                <img ng-src="http://beta.tvlive.io{{tvContent.channelImageURL}}" alt="{{tvContent.channel}}">          
+                <img ng-src="{{tvContent.channelImageURL}}" alt="{{tvContent.channel}}">          
                 <p><small>{{tvContent.st}} - {{tvContent.et}}</small></p>                        
               </div>    
               <div class="col col-66">

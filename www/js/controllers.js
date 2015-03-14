@@ -6,8 +6,8 @@ angular.module('starter.controllers', [])
          $http.get('http://beta.tvlive.io/channels/provider/' + provider).
           success(callback);        
     }
-    this.detailsContent = function (id, callback) {
-         $http.get('http://beta.tvlive.io/tvcontent/' + id).
+    this.detailsContent = function (url, callback) {
+         $http.get(url).
           success(callback);        
     }
     this.currentContent = function (provider, type, success_callback, error_callback) {
@@ -58,13 +58,13 @@ angular.module('starter.controllers', [])
 
 .controller('ChannelsCtrl', function($scope, $stateParams, contentConnector) {
     contentConnector.listChannels($stateParams.provider, function(data) {
-            $scope.channels = transform_channel(data);
+            $scope.channels = data
         })
 })
 
 
-.controller('DetailsCtrl', function($scope, $stateParams, contentConnector) {
-    contentConnector.detailsContent($stateParams.tvContentId, function(data) {
+.controller('DetailsCtrl', function($scope, $stateParams, contentConnector, $location) {
+    contentConnector.detailsContent($location.search()['parameter'], function(data) {
             $scope.details = transform_date_details(data);
         })
   })

@@ -1,10 +1,3 @@
-function transform_channel(data) {
-	for (i = 0; i < data.length; i++) {   
-	  data[i].icon = 'http://beta.tvlive.io/' + data[i].image;
-	}
-	return data;
-	}
-
 function transform_minutes(minutes){
     if (minutes < 10) {
       return '0' + minutes
