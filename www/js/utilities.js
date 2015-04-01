@@ -10,7 +10,7 @@ function transform_list_tv_content(data) {
     for (i = 0; i < data.length; i++) {
       if (data[i].series){
         data[i].title = data[i].series.serieTitle;  
-        data[i].rating = data[i].series.rating;         
+        data[i].rating = data[i].rating;         
         data[i].type = 'Series';
       }
 
@@ -21,7 +21,7 @@ function transform_list_tv_content(data) {
 
       if (data[i].film){
         data[i].title = data[i].film.title;   
-        data[i].rating = data[i].film.rating;      
+        data[i].rating = data[i].rating;      
         data[i].type = 'Film';
       }
 
