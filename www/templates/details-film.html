@@ -2,7 +2,7 @@
   <ion-content class="has-header">
     <div class="row">
             <div class="col col-33">
-              <img ng-src="{{details.channelImageURL}}" alt="{{details.channel}}"
+              <img ng-src="{{details.film.poster}}&h=150">          
               <p><small>{{details.st}} - {{details.et}}</small></p>                        
             </div>    
             <div class="col col-66">
@@ -11,11 +11,12 @@
                 </div>
                 <div ng-show="details.perCentTimeElapsed" class="progress-bar">
                   <progress max="100" value="{{details.perCentTimeElapsed}}"></progress>
-                </div>                                            
+                </div>                                 
+                <img ng-src="{{details.channelImageURL}}" alt="{{details.channel}}">           
             </div>
     </div>  
     <div class="row">
-      <div ng-show="details.film.plot" class="col content-description">  
+      <div ng-show="details.film.plot" class="col">  
         <h5>{{details.film.plot}}</h5>
         <span ng-show="details.film.year" class="item-note"> 
           {{details.film.year}}
@@ -24,7 +25,7 @@
     </div>
       <div ng-repeat="actor in details.film.actors" class="row">
         <div class="col film-actor">
-          <i class="icon ion-person-stalker"></i><h4>{{actor}}</h4>      
+         <h5>{{actor}}</h5>      
         </div>
     </div>
   </ion-content>

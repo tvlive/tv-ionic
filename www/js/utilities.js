@@ -6,11 +6,11 @@ function transform_minutes(minutes){
   }
 
 function transform_list_tv_content(data) {
-    console.debug("asasasa")
     for (i = 0; i < data.length; i++) {
       if (data[i].series){
         data[i].title = data[i].series.serieTitle;  
         data[i].rating = data[i].rating;         
+        data[i].poster = data[i].series.poster;  
         data[i].type = 'Series';
       }
 
@@ -22,6 +22,7 @@ function transform_list_tv_content(data) {
       if (data[i].film){
         data[i].title = data[i].film.title;   
         data[i].rating = data[i].rating;      
+        data[i].poster = data[i].film.poster;  
         data[i].type = 'Film';
       }
 
