@@ -28,8 +28,8 @@ function transform_list_tv_content(data) {
 
       s = new Date(data[i].start);
       e = new Date(data[i].end);    
-      s.setUTCHours(s.getUTCHours() - 1);
-      e.setUTCHours(e.getUTCHours() - 1);
+      s.setUTCHours(s.getUTCHours());
+      e.setUTCHours(e.getUTCHours());
       data[i].st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
       data[i].et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());
       data[i].passed = e < new Date();
@@ -41,8 +41,8 @@ function transform_list_tv_content(data) {
   function transform_date_details(data) {
       s = new Date(data.start);
       e = new Date(data.end);
-      s.setUTCHours(s.getUTCHours() - 1);
-      e.setUTCHours(e.getUTCHours() - 1);
+      s.setUTCHours(s.getUTCHours());
+      e.setUTCHours(e.getUTCHours());
       data.st = transform_minutes(s.getHours()) + ':' + transform_minutes(s.getMinutes());
       data.et = transform_minutes(e.getHours()) + ':' + transform_minutes(e.getMinutes());      
 
